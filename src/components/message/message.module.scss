@@ -1,0 +1,18 @@
+.container {
+  min-height: 100px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  .wrapper {
+    padding: 10px 30px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  font-size: 14px;
+  color: #f1f1f1;
+}
