@@ -1,7 +1,10 @@
 import React from 'react';
+import MainScreen from '../main-screen/main-screen';
 
 function App() {
-  return <h1 className='container pt-4'>Hello, world!</h1>;
+  return (
+    <MainScreen />
+  );
 }
 
 export default App;
