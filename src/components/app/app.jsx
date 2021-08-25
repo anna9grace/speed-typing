@@ -1,9 +1,12 @@
 import React from 'react';
 import MainScreen from '../main-screen/main-screen';
+import styles from './app.module.scss';
 
 function App() {
   return (
-    <MainScreen />
+    <div className={styles.layout}>
+      <MainScreen />
+    </div>
   );
 }
 

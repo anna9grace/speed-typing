@@ -1,13 +1,22 @@
 import React from 'react';
+import styles from './training-block.module.scss';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-function TrainingBlock() {
+function TrainingBlock({children, ...attr}) {
   return (
-    <body className='row justify-content-center align-items-center' style={{minHeight: '100vh'}}>
-      <div className='col-6 bg-light' style={{minHeight: 'max-content', height: '60vh'}}>
-
+    <div
+      className={classNames('row', 'justify-content-center', styles.container)}
+    >
+      <div className={classNames('col-10', 'col-md-6', styles.wrapper)}>
+        <p>{children}</p>
       </div>
-    </body>
+    </div>
   );
 }
+
+TrainingBlock.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default TrainingBlock;

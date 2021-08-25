@@ -1,0 +1,13 @@
+.container {
+  padding-bottom: 50px;
+
+  .wrapper {
+    padding: 50px 30px 40px;
+  }
+}
+
+.wrapper {
+  min-height: 300px;
+  border-radius: 5px;
+  background-color: rgba($color: #ffffff, $alpha: 0.8);
+}
