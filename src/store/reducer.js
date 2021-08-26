@@ -1,11 +1,11 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setIsStarted, resetTraining} from './action';
+import {setIsStarted, resetTraining, getSymbolTyped} from './action';
 
 const initialState = {
   isTrainingStarted: false,
   currentSymbolNumber: 0,
-  currentSymbolTyped: null,
+  currentSymbolTyped: '',
   timePassed: 0,
   mistakesCount: 0,
   trainingText: 'Пребывание на территориях национальных парков (за исключением участков, расположенных в границах населенных пунктов) физических лиц, не являющихся работниками федеральных государственных бюджетных учреждений, осуществляющих управление национальными парками, должностными лицами федерального органа исполнительной власти, в ведении которого находятся национальные парки, допускается только при наличии разрешения федерального государственного бюджетного учреждения, осуществляющего управление национальным парком, или федерального органа исполнительной власти, в ведении которого находятся национальные парки',
@@ -21,9 +21,13 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(resetTraining, (state) => {
       state.isTrainingStarted = false;
       state.currentSymbolNumber = 0;
-      state.currentSymbolTyped = null;
+      state.currentSymbolTyped = '';
       state.timePassed = 0;
       state.mistakesCount = 0;
+    })
+    .addCase(getSymbolTyped, (state, action) => {
+      state.currentSymbolTyped = action.payload;
+      // state.currentSymbolTyped = state.currentSymbolTyped + action.payload;
     });
 });
 
