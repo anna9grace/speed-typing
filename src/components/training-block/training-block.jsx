@@ -1,15 +1,16 @@
 import React from 'react';
-import styles from './training-block.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import {useDispatch} from 'react-redux';
+
+import { resetTraining } from '../../store/action';
+import styles from './training-block.module.scss';
 import Button from '../button/button';
 import CurrentResult from '../current-result/current-result';
 import { ResultType } from '../../constants';
 
-function TrainingBlock({ children, ...attrs }) {
-  // document.addEventListener('keydown', (evt) => {
-  //   console.log(evt.key);
-  // });
+function TrainingBlock({ children }) {
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -21,8 +22,22 @@ function TrainingBlock({ children, ...attrs }) {
             Скорость печати:
             <CurrentResult className={styles.rate} resultType={ResultType.SPEED}/>
           </p>
-          <Button className={styles.button} modifier='dark'>сменить текст</Button>
-          <Button className={styles.button} modifier='dark'>начать заново</Button>
+
+          <Button
+            className={styles.button}
+            modifier='dark'
+            onBtnClick={() => {}}
+          >
+            сменить текст
+          </Button>
+
+          <Button
+            className={styles.button}
+            modifier='dark'
+            onBtnClick={() => dispatch(resetTraining())}
+          >
+            начать заново
+          </Button>
         </div>
         <p>{children}</p>
       </div>

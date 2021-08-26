@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useSelector} from 'react-redux';
+
+import { getUser } from '../../store/selectors';
 import styles from './page-header.module.scss';
 
 const renderAuthNavbar = (userName) => (
@@ -20,7 +23,8 @@ const renderNoAuthNavbar = () => (
 );
 
 function PageHeader(props) {
-  const {user, isMain} = props;
+  const {isMain} = props;
+  const user = useSelector(getUser);
 
   return (
     <header className={styles.container}>
@@ -44,7 +48,6 @@ function PageHeader(props) {
 
 
 PageHeader.propTypes = {
-  user: PropTypes.string,
   isMain: PropTypes.bool.isRequired,
 };
 
