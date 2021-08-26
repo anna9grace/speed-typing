@@ -1,4 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+
+import { getTrainingStatus } from '../../store/selectors';
+import { setIsStarted } from '../../store/action';
 import PageHeader from '../page-header/page-header';
 import Message from '../message/message';
 import TrainingBlock from '../training-block/training-block';
@@ -10,6 +14,15 @@ const message = 'Начните печатать, когда будете гот
 const user = 'Anna';
 
 function MainScreen(props) {
+  const dispatch = useDispatch();
+  const trainingStatus = useSelector(getTrainingStatus);
+  console.log(trainingStatus);
+
+
+  document.addEventListener('keydown', () => {
+    dispatch(setIsStarted());
+  });
+
   return (
     <React.Fragment>
       <PageHeader user={user} isMain/>
