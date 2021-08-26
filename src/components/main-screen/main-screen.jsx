@@ -12,7 +12,7 @@ const user = 'Anna';
 function MainScreen(props) {
   return (
     <React.Fragment>
-      <PageHeader user={user}/>
+      <PageHeader user={user} isMain/>
       <main>
         <Message>{message}</Message>
         <TrainingBlock>{text}</TrainingBlock>

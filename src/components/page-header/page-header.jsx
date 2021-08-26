@@ -20,13 +20,17 @@ const renderNoAuthNavbar = () => (
 );
 
 function PageHeader(props) {
-  const {user} = props;
+  const {user, isMain} = props;
 
   return (
     <header className={styles.container}>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">Тренажер быстрой печати</a>
+          {
+            isMain
+              ? <span className="navbar-brand">Тренажер быстрой печати</span>
+              : <a className="navbar-brand" href="/">Тренажер быстрой печати</a>
+          }
           <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {(user && renderAuthNavbar(user)) || renderNoAuthNavbar()}
@@ -41,6 +45,7 @@ function PageHeader(props) {
 
 PageHeader.propTypes = {
   user: PropTypes.string,
+  isMain: PropTypes.bool.isRequired,
 };
 
 export default PageHeader;
