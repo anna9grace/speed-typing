@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 
 import { resetTraining } from '../../store/action';
@@ -9,7 +10,8 @@ import CurrentResult from '../current-result/current-result';
 import { ResultType } from '../../constants';
 import TrainingText from '../training-text/training-text';
 
-function TrainingBlock() {
+function TrainingBlock(props) {
+  const {currentRef} = props;
   const dispatch = useDispatch();
 
   return (
@@ -40,10 +42,14 @@ function TrainingBlock() {
           </Button>
         </div>
 
-        <TrainingText />
+        <TrainingText currentRef={currentRef}/>
       </div>
     </div>
   );
 }
+
+TrainingBlock.propTypes = {
+  currentRef: PropTypes.object.isRequired,
+};
 
 export default TrainingBlock;

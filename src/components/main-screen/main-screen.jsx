@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import { getTrainingStatus, getMessageText } from '../../store/selectors';
-import { setIsStarted, getSymbolTyped } from '../../store/action';
+import { setIsStarted, setWrongSymbol, increaseMistakes, changeCurrentSymbol } from '../../store/action';
 import { checkSymbol } from '../../utils';
 
 import PageHeader from '../page-header/page-header';
@@ -13,15 +13,24 @@ function MainScreen() {
   const dispatch = useDispatch();
   const trainingStatus = useSelector(getTrainingStatus);
   const message = useSelector(getMessageText);
+  const symbolRef = useRef();
 
   const onKeydown = (evt) => {
     if (!checkSymbol(evt.key)) {
       return;
     }
+    evt.preventDefault();
+
     if (!trainingStatus) {
       dispatch(setIsStarted());
     }
-    dispatch(getSymbolTyped(evt.key));
+
+    if (evt.key === symbolRef.current.textContent) {
+      dispatch(changeCurrentSymbol());
+    } else {
+      dispatch(setWrongSymbol());
+      dispatch(increaseMistakes());
+    }
   };
 
   useEffect(() => {
@@ -36,7 +45,7 @@ function MainScreen() {
       <PageHeader isMain/>
       <main>
         <Message>{message}</Message>
-        <TrainingBlock />
+        <TrainingBlock currentRef={symbolRef}/>
       </main>
     </React.Fragment>
   );
