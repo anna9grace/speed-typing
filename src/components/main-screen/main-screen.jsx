@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
-import { getTrainingStatus, getTrainingText, getMessageText } from '../../store/selectors';
+import { getTrainingStatus, getMessageText } from '../../store/selectors';
 import { setIsStarted, getSymbolTyped } from '../../store/action';
 import { checkSymbol } from '../../utils';
 
@@ -12,7 +12,6 @@ import TrainingBlock from '../training-block/training-block';
 function MainScreen() {
   const dispatch = useDispatch();
   const trainingStatus = useSelector(getTrainingStatus);
-  const text = useSelector(getTrainingText);
   const message = useSelector(getMessageText);
 
   const onKeydown = (evt) => {
@@ -37,7 +36,7 @@ function MainScreen() {
       <PageHeader isMain/>
       <main>
         <Message>{message}</Message>
-        <TrainingBlock>{text}</TrainingBlock>
+        <TrainingBlock />
       </main>
     </React.Fragment>
   );

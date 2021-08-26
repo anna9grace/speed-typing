@@ -1,0 +1,17 @@
+.container {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+}
+
+.uncompleted {
+  color: rgba(#000000, 0.45);
+}
+
+.current {
+  background-color:rgba(77, 245, 141, 0.959)
+}
+
+.current.wrong {
+  background-color:rgba(243, 45, 19, 0.7)
+}

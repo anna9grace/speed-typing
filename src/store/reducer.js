@@ -4,11 +4,11 @@ import {setIsStarted, resetTraining, getSymbolTyped} from './action';
 
 const initialState = {
   isTrainingStarted: false,
-  currentSymbolNumber: 0,
+  currentSymbolNumber: 2,
   currentSymbolTyped: '',
   timePassed: 0,
   mistakesCount: 0,
-  trainingText: 'Пребывание на территориях национальных парков (за исключением участков, расположенных в границах населенных пунктов) физических лиц, не являющихся работниками федеральных государственных бюджетных учреждений, осуществляющих управление национальными парками, должностными лицами федерального органа исполнительной власти, в ведении которого находятся национальные парки, допускается только при наличии разрешения федерального государственного бюджетного учреждения, осуществляющего управление национальным парком, или федерального органа исполнительной власти, в ведении которого находятся национальные парки',
+  trainingText: 'Picanha ham chicken beef.  Brisket jerky turducken prosciutto ham hock, veniam occaecat ipsum pancetta ex andouille pig ut fatback salami.  Chislic ea lorem adipisicing, pig laborum corned beef magna do turkey sed swine.  Velit swine chicken mollit id ut shankle beef elit do.  Beef ribs meatloaf irure pork loin enim tongue cupidatat capicola drumstick landjaeger bresaola est alcatra.  Brisket adipisicing laboris in swine mollit ea veniam do.","Pariatur doner consectetur, tenderloin short ribs nulla sed tail irure in shank dolore.',
   messageText: 'Начните печатать, когда будете готовы!',
   user: 'Anna',
 };

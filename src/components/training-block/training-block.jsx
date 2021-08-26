@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 
 import { resetTraining } from '../../store/action';
@@ -8,8 +7,9 @@ import styles from './training-block.module.scss';
 import Button from '../button/button';
 import CurrentResult from '../current-result/current-result';
 import { ResultType } from '../../constants';
+import TrainingText from '../training-text/training-text';
 
-function TrainingBlock({ children }) {
+function TrainingBlock() {
   const dispatch = useDispatch();
 
   return (
@@ -39,14 +39,11 @@ function TrainingBlock({ children }) {
             начать заново
           </Button>
         </div>
-        <p>{children}</p>
+
+        <TrainingText />
       </div>
     </div>
   );
 }
-
-TrainingBlock.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default TrainingBlock;
