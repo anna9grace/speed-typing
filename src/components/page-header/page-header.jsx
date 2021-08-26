@@ -1,9 +1,26 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import styles from './page-header.module.scss';
 
+const renderAuthNavbar = (userName) => (
+  <React.Fragment>
+    <li className={styles.navlink}>
+      <a className="nav-link" href="/">Статистика {userName}</a>
+    </li>
+    <li className={styles.navlink}>
+      <a className="nav-link" href="/">Выйти</a>
+    </li>
+  </React.Fragment>
+);
+
+const renderNoAuthNavbar = () => (
+  <li className={styles.navlink}>
+    <a className="nav-link" href="/login">Войти</a>
+  </li>
+);
+
 function PageHeader(props) {
+  const {user} = props;
 
   return (
     <header className={styles.container}>
@@ -12,12 +29,7 @@ function PageHeader(props) {
           <a className="navbar-brand" href="/">Тренажер быстрой печати</a>
           <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className={styles.navlink}>
-                <a className="nav-link" href="/">Статистика Юзер</a>
-              </li>
-              <li className={styles.navlink}>
-                <a className="nav-link" href="/">Выйти</a>
-              </li>
+              {(user && renderAuthNavbar(user)) || renderNoAuthNavbar()}
             </ul>
           </div>
         </div>
@@ -25,5 +37,10 @@ function PageHeader(props) {
     </header>
   );
 }
+
+
+PageHeader.propTypes = {
+  user: PropTypes.string,
+};
 
 export default PageHeader;

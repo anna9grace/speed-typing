@@ -7,10 +7,12 @@ const text = 'Пребывание на территориях национал�
 
 const message = 'Начните печатать, когда будете готовы!';
 
+const user = 'Anna';
+
 function MainScreen(props) {
   return (
     <React.Fragment>
-      <PageHeader />
+      <PageHeader user={user}/>
       <main>
         <Message>{message}</Message>
         <TrainingBlock>{text}</TrainingBlock>
