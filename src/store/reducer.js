@@ -8,10 +8,12 @@ const initialState = {
   wrongSymbolNumber: null,
   startTime: null,
   mistakesCount: 0,
-  trainingText: 'Picanha ham chicken beef. Brisket jerky turducken prosciutto ham hock, veniam occaecat ipsum pancetta ex andouille pig ut fatback salami.',
+  trainingText: 'Picanha ham chicken beef.',
   messageText: 'Начните печатать, когда будете готовы!',
   user: 'Anna',
 };
+
+// Brisket jerky turducken prosciutto ham hock, veniam occaecat ipsum pancetta ex andouille pig ut fatback salami.
 
 const reducer = createReducer(initialState, (builder) => {
   builder

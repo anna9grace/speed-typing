@@ -48,7 +48,7 @@ function PageHeader(props) {
 
 
 PageHeader.propTypes = {
-  isMain: PropTypes.bool.isRequired,
+  isMain: PropTypes.bool,
 };
 
 export default PageHeader;
