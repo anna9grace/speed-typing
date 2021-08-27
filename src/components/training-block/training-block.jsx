@@ -6,8 +6,7 @@ import {useDispatch} from 'react-redux';
 import { resetTraining } from '../../store/action';
 import styles from './training-block.module.scss';
 import Button from '../button/button';
-import CurrentResult from '../current-result/current-result';
-import { ResultType } from '../../constants';
+import CurrentSpeedResult from '../current-speed-result/current-speed-result';
 import TrainingText from '../training-text/training-text';
 
 function TrainingBlock(props) {
@@ -21,8 +20,8 @@ function TrainingBlock(props) {
       <div className={classNames('col-10', 'col-md-6', styles.wrapper)}>
         <div className={styles.header}>
           <p className={styles.result}>
-            Скорость печати:
-            <CurrentResult className={styles.rate} resultType={ResultType.SPEED}/>
+            Скорость печати:&nbsp;
+            <CurrentSpeedResult className={styles.rate}/>
           </p>
 
           <Button

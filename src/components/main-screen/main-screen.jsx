@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import { getTrainingStatus, getMessageText } from '../../store/selectors';
-import { setIsStarted, setWrongSymbol, increaseMistakes, changeCurrentSymbol } from '../../store/action';
+import { startTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol } from '../../store/action';
 import { checkSymbol } from '../../utils';
 
 import PageHeader from '../page-header/page-header';
@@ -22,7 +22,7 @@ function MainScreen() {
     evt.preventDefault();
 
     if (!trainingStatus) {
-      dispatch(setIsStarted());
+      dispatch(startTraining());
     }
 
     if (evt.key === symbolRef.current.textContent) {
