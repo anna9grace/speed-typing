@@ -16,4 +16,16 @@ export const Symbols = {
 
 export const BASE_URLS = {
   TEXT: 'https://baconipsum.com/api/?type=all-meat',
+  AUTHORIZATION: 'https://7.react.pages.academy/wtw',
+};
+
+export const APIRoute = {
+  LOGIN: '/login',
+  LOGOUT: '/logout',
+};
+
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
 };

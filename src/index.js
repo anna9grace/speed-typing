@@ -8,10 +8,12 @@ import './index.scss';
 
 import reducer from './store/reducer';
 import { createAPI } from './services/api';
-import { fetchTrainingText } from './store/api-actions';
+import { fetchTrainingText, checkAuth } from './store/api-actions';
+import { requireAuthorization } from './store/action';
+import { AuthorizationStatus } from './constants';
 
 export const api = createAPI(
-  // () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
+  () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
 );
 
 const store = configureStore({
@@ -24,9 +26,8 @@ const store = configureStore({
     }),
 });
 
-// store.dispatch(checkAuth(true));
+store.dispatch(checkAuth(true));
 store.dispatch(fetchTrainingText());
-// store.dispatch(fetchPromoFilm());
 
 ReactDOM.render(
   <React.StrictMode>

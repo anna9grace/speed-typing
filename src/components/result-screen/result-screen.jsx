@@ -7,11 +7,10 @@ import styles from './result-screen.module.scss';
 import PageHeader from '../page-header/page-header';
 import Result from '../result/result';
 import { ResultType } from '../../constants';
-import { getUser, getMistakesCount, getStartTime, getCurrentSymbol } from '../../store/selectors';
+import { getMistakesCount, getStartTime, getCurrentSymbol } from '../../store/selectors';
 import { AppRoutes } from '../../constants';
 
 function ResultScreen() {
-  const user = useSelector(getUser);
   const startTime = useSelector(getStartTime);
   const rightSymbolsCount = useSelector(getCurrentSymbol);
   const mistakesCount = useSelector(getMistakesCount);
@@ -34,7 +33,7 @@ function ResultScreen() {
 
   return (
     <React.Fragment>
-      <PageHeader user={user}/>
+      <PageHeader />
       <main className={classNames('row', 'align-items-center')}>
         <div className={classNames('row', 'justify-content-center', 'align-items-center')}>
           <h1 className={styles.title}>Так держать! Ваши результаты:</h1>

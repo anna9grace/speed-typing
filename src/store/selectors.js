@@ -5,4 +5,5 @@ export const getWrongSymbolNumber = (state) => state.wrongSymbolNumber;
 export const getStartTime = (state) => state.startTime;
 export const getMistakesCount = (state) => state.mistakesCount;
 export const getMessageText = (state) => state.messageText;
-export const getUser = (state) => state.user;
+export const getUserInfo = (state) => state.authInfo;
+export const getAuthStatus = (state) => state.authorizationStatus;
