@@ -7,24 +7,25 @@ import App from './components/app/app';
 import './index.scss';
 
 import reducer from './store/reducer';
-// import { createAPI } from './services/api';
+import { createAPI } from './services/api';
+import { fetchTrainingText } from './store/api-actions';
 
-// export const api = createAPI(
-//   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
-// );
+export const api = createAPI(
+  // () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
+);
 
 const store = configureStore({
   reducer: reducer,
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({
-  //     thunk: {
-  //       extraArgument: api,
-  //     },
-  //   }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }),
 });
 
 // store.dispatch(checkAuth(true));
-// store.dispatch(fetchFilmsList());
+store.dispatch(fetchTrainingText());
 // store.dispatch(fetchPromoFilm());
 
 ReactDOM.render(

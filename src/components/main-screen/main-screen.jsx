@@ -8,6 +8,7 @@ import { checkSymbol } from '../../utils';
 import { AppRoutes } from '../../constants';
 
 import PageHeader from '../page-header/page-header';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Message from '../message/message';
 import TrainingBlock from '../training-block/training-block';
 
@@ -16,8 +17,8 @@ function MainScreen() {
   const trainingStatus = useSelector(getTrainingStatus);
   const message = useSelector(getMessageText);
   const currentSymbol = useSelector(getCurrentSymbol);
+  const text = useSelector(getTrainingText);
   const symbolRef = useRef();
-  const textLength = useSelector(getTrainingText).length;
 
   const onKeydown = (evt) => {
     if (!checkSymbol(evt.key)) {
@@ -42,16 +43,22 @@ function MainScreen() {
     return () => document.removeEventListener('keydown', onKeydown);
   }, [trainingStatus]);
 
-  if (currentSymbol === textLength) {
+  if (text && currentSymbol === text.length) {
     return <Redirect to={AppRoutes.RESULT} />;
   }
+
+  const renderMainContent = () => (
+    <React.Fragment>
+      <Message>{message}</Message>
+      <TrainingBlock currentRef={symbolRef}/>
+    </React.Fragment>
+  );
 
   return (
     <React.Fragment>
       <PageHeader isMain/>
       <main>
-        <Message>{message}</Message>
-        <TrainingBlock currentRef={symbolRef}/>
+        {(!text && <LoadingScreen />) || renderMainContent()}
       </main>
     </React.Fragment>
   );

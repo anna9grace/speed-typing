@@ -1,16 +1,13 @@
 import axios from 'axios';
 // import { ResponseCode } from '../const';
 
-const BACKEND_URL = 'https://baconipsum.com/api/?type=all-meat';
 const REQUEST_TIMEOUT = 5000;
-
 
 // let token = '';
 
 // export const createAPI = (onUnauthorized) => {
 export const createAPI = () => {
   const api = axios.create({
-    baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
   });
 

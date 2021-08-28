@@ -1,12 +1,15 @@
 import React from 'react';
 import {Switch, Route } from 'react-router-dom';
-// import LoadingScreen from '../loading-screen/loading-screen';
+import { ToastContainer } from 'react-toastify';
+
 import MainScreen from '../main-screen/main-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import LoginScreen from '../login-screen/login-screen';
 import ResultScreen from '../result-screen/result-screen';
 import styles from './app.module.scss';
 import { AppRoutes } from '../../constants';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -28,6 +31,10 @@ function App() {
           <NotFoundScreen />
         </Route>
       </Switch>
+
+      <ToastContainer
+        autoClose={false}
+      />
     </div>
   );
 }

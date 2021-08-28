@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {startTraining, resetTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol} from './action';
+import {startTraining, resetTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol, loadText} from './action';
 
 const initialState = {
   isTrainingStarted: false,
@@ -8,12 +8,10 @@ const initialState = {
   wrongSymbolNumber: null,
   startTime: null,
   mistakesCount: 0,
-  trainingText: 'Picanha ham chicken beef.',
+  trainingText: '',
   messageText: 'Начните печатать, когда будете готовы!',
   user: 'Anna',
 };
-
-// Brisket jerky turducken prosciutto ham hock, veniam occaecat ipsum pancetta ex andouille pig ut fatback salami.
 
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -37,6 +35,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeCurrentSymbol, (state, action) => {
       state.currentSymbolNumber = state.currentSymbolNumber + action.payload;
+    })
+    .addCase(loadText, (state, action) => {
+      state.trainingText = action.payload.slice(0, 2).join(' ');
     });
 });
 
