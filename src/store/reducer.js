@@ -9,7 +9,7 @@ const initialState = {
   wrongSymbolNumber: null,
   startTime: null,
   mistakesCount: 0,
-  trainingText: 'Начните печатать, когда будете',
+  trainingText: '',
   messageText: 'Начните печатать, когда будете готовы!',
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   authInfo: {},

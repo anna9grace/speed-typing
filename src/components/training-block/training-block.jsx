@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 
 import { resetTraining } from '../../store/action';
+import { fetchTrainingText } from '../../store/api-actions';
 import styles from './training-block.module.scss';
 import Button from '../button/button';
 import CurrentSpeedResult from '../current-speed-result/current-speed-result';
@@ -27,7 +28,10 @@ function TrainingBlock(props) {
           <Button
             className={styles.button}
             modifier='dark'
-            onBtnClick={() => {}}
+            onBtnClick={() => {
+              dispatch(resetTraining());
+              dispatch(fetchTrainingText());
+            }}
           >
             сменить текст
           </Button>
