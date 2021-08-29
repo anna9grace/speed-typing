@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import MainScreen from '../main-screen/main-screen';
@@ -23,9 +23,9 @@ function App() {
           <LoginScreen />
         </Route>
 
-        <Route exact path={AppRoutes.RESULT}
-          render={() => <ResultScreen />}
-        />
+        <Route exact path={AppRoutes.RESULT}>
+          <ResultScreen />
+        </Route>
 
         <Route>
           <NotFoundScreen />

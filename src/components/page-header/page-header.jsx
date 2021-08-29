@@ -48,7 +48,7 @@ function PageHeader(props) {
           {
             isMain
               ? <span className="navbar-brand">Тренажер быстрой печати</span>
-              : <Link className="navbar-brand" to={AppRoutes.ROOT}>Тренажер быстрой печати</Link>
+              : <Link className="navbar-brand" to='/'>Тренажер быстрой печати</Link>
           }
           <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">

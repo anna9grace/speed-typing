@@ -1,4 +1,4 @@
-import {createAction} from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit';
 
 export const ActionType = {
   START_TRAINING: 'training/startTraining',
@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_TEXT: 'data/loadText',
   REQUIRE_AUTHORIZATION: 'user/requireAuthorization',
   LOGOUT: 'user/logout',
+  SET_IS_LOADING: 'data/setIsLoading',
 };
 
 export const startTraining = createAction(ActionType.START_TRAINING);
@@ -35,3 +36,7 @@ export const requireAuthorization = createAction(ActionType.REQUIRE_AUTHORIZATIO
 }));
 
 export const logout = createAction(ActionType.LOGOUT);
+
+export const setIsLoading = createAction(ActionType.SET_IS_LOADING, (status) => ({
+  payload: status,
+}));

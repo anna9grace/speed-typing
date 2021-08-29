@@ -4,13 +4,17 @@ import { loadText } from './action';
 import { BASE_URLS } from '../constants';
 import { APIRoute } from '../constants';
 import { AuthorizationStatus } from '../constants';
-import { requireAuthorization, logout } from './action';
+import { requireAuthorization, logout, setIsLoading } from './action';
 
 
 export const fetchTrainingText = () => (dispatch, _getState, api) => (
   api.get(BASE_URLS.TEXT)
     .then(({ data }) => dispatch(loadText(data)))
-    .catch((error) => toast(error.message))
+    .then(() => dispatch(setIsLoading(false)))
+    .catch((error) => {
+      dispatch(setIsLoading(false));
+      toast(error.message);
+    })
 );
 
 

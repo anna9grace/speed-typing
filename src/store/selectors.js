@@ -7,3 +7,4 @@ export const getMistakesCount = (state) => state.mistakesCount;
 export const getMessageText = (state) => state.messageText;
 export const getUserInfo = (state) => state.authInfo;
 export const getAuthStatus = (state) => state.authorizationStatus;
+export const getLoadingStatus = (state) => state.isLoading;

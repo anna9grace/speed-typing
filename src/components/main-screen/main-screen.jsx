@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
-import { getTrainingStatus, getMessageText, getTrainingText, getCurrentSymbol } from '../../store/selectors';
+import { getTrainingStatus, getMessageText, getTrainingText, getCurrentSymbol, getLoadingStatus } from '../../store/selectors';
 import { startTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol } from '../../store/action';
 import { checkSymbol } from '../../utils';
 import { AppRoutes } from '../../constants';
@@ -18,10 +18,11 @@ function MainScreen() {
   const message = useSelector(getMessageText);
   const currentSymbol = useSelector(getCurrentSymbol);
   const text = useSelector(getTrainingText);
+  const loadingStatus = useSelector(getLoadingStatus);
   const symbolRef = useRef();
 
   const onKeydown = (evt) => {
-    if (!checkSymbol(evt.key)) {
+    if (!checkSymbol(evt.key) || loadingStatus) {
       return;
     }
     evt.preventDefault();
@@ -41,7 +42,7 @@ function MainScreen() {
   useEffect(() => {
     document.addEventListener('keydown', onKeydown);
     return () => document.removeEventListener('keydown', onKeydown);
-  }, [trainingStatus]);
+  }, [trainingStatus, loadingStatus]);
 
   if (text && currentSymbol === text.length) {
     return <Redirect to={AppRoutes.RESULT} />;

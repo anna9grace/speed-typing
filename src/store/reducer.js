@@ -1,6 +1,6 @@
-import {createReducer} from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 
-import {startTraining, resetTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol, loadText, requireAuthorization, logout} from './action';
+import { startTraining, resetTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol, loadText, requireAuthorization, logout, setIsLoading } from './action';
 import { AuthorizationStatus } from '../constants';
 
 const initialState = {
@@ -13,6 +13,7 @@ const initialState = {
   messageText: 'Начните печатать, когда будете готовы!',
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   authInfo: {},
+  isLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -48,6 +49,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.authorizationStatus = AuthorizationStatus.NO_AUTH;
       state.authInfo = {};
+    })
+    .addCase(setIsLoading, (state, action) => {
+      state.isLoading = action.payload;
     });
 });
 
