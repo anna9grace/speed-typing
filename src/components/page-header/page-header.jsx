@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import { resetTraining } from '../../store/action';
 import { systemLogout } from '../../store/api-actions';
 import { getUserInfo } from '../../store/selectors';
 import styles from './page-header.module.scss';
@@ -48,7 +49,14 @@ function PageHeader(props) {
           {
             isMain
               ? <span className="navbar-brand">Тренажер быстрой печати</span>
-              : <Link className="navbar-brand" to='/'>Тренажер быстрой печати</Link>
+              : (
+                <Link
+                  className="navbar-brand"
+                  to='/'
+                  onClick={() => dispatch(resetTraining())}
+                >
+                  Тренажер быстрой печати
+                </Link>)
           }
           <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
