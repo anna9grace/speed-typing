@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "id": "a1",
+      "userResults": [
+        {
+          "speed": "185",
+          "precision": "85"
+        },
+        {
+          "speed": "125",
+          "precision": "79"
+        }
+      ]
+    },
+    {
+      "id": "b1",
+      "userResults": [
+        {
+          "speed": "100",
+          "precision": "99"
+        }
+      ]
+    }
+  ]
+}

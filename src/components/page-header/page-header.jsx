@@ -12,7 +12,7 @@ import { AppRoutes } from '../../constants';
 const renderAuthNavbar = (userName, onLogout) => (
   <React.Fragment>
     <li className={styles.navlink}>
-      <Link className="nav-link" to="/">Статистика {userName}</Link>
+      <Link className="nav-link" to={AppRoutes.STATS}>Статистика {userName}</Link>
     </li>
     <li className={styles.navlink}>
       <Link

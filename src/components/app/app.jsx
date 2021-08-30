@@ -6,6 +6,7 @@ import MainScreen from '../main-screen/main-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import LoginScreen from '../login-screen/login-screen';
 import ResultScreen from '../result-screen/result-screen';
+import StatsScreen from '../stats-screen/stats-screen';
 import styles from './app.module.scss';
 import { AppRoutes } from '../../constants';
 
@@ -25,6 +26,10 @@ function App() {
 
         <Route exact path={AppRoutes.RESULT}>
           <ResultScreen />
+        </Route>
+
+        <Route exact path={AppRoutes.STATS}>
+          <StatsScreen />
         </Route>
 
         <Route>

@@ -4,7 +4,7 @@ import { loadText } from './action';
 import { BASE_URLS } from '../constants';
 import { APIRoute } from '../constants';
 import { AuthorizationStatus } from '../constants';
-import { requireAuthorization, logout, setIsLoading } from './action';
+import { requireAuthorization, logout, setIsLoading, loadResults } from './action';
 
 
 export const fetchTrainingText = () => (dispatch, _getState, api) => (
@@ -17,6 +17,15 @@ export const fetchTrainingText = () => (dispatch, _getState, api) => (
     })
 );
 
+export const fetchResults = (user) => (dispatch, _getState, api) => (
+  api.get(`${BASE_URLS.RESULTS}/${user.name}${user.id}`)
+    .then(({ data }) => dispatch(loadResults(data.userResults)))
+    // .then(() => dispatch(setIsLoading(false)))
+    .catch((error) => {
+      // dispatch(setIsLoading(false));
+      toast(error.message);
+    })
+);
 
 export const checkAuth = (isInitial) => (dispatch, _getState, api) => (
   api.get(`${BASE_URLS.AUTHORIZATION}/${APIRoute.LOGIN}`)
