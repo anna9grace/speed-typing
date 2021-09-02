@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { Redirect } from 'react-router';
+import { nanoid } from 'nanoid';
 
 import styles from './stats-screen.module.scss';
 
@@ -37,7 +38,7 @@ function StatsScreen () {
             : (
               <ol >
                 {results.map((res, index) => (
-                  <li key={`${res.id}${index}`}>
+                  <li key={nanoid()}>
                     <p>Скорость: <span className={styles.result}>{res.speed}</span></p>
                     <p>Точность: <span className={styles.result}>{res.precision}</span></p>
                     {index !== results.length - 1 && <hr/>}
