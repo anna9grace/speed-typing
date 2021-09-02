@@ -9,7 +9,7 @@ import './index.scss';
 
 import reducer from './store/reducer';
 import { createAPI } from './services/api';
-import { fetchTrainingText, checkAuth } from './store/api-actions';
+import { checkAuth } from './store/api-actions';
 import { requireAuthorization } from './store/action';
 import { AuthorizationStatus } from './constants';
 
@@ -28,7 +28,6 @@ const store = configureStore({
 });
 
 store.dispatch(checkAuth(true));
-store.dispatch(fetchTrainingText());
 
 ReactDOM.render(
   <React.StrictMode>

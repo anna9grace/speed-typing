@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import styles from './main-screen.module.scss';
 import { getTrainingStatus, getMessageText, getTrainingText, getCurrentSymbol, getLoadingStatus } from '../../store/selectors';
 import { startTraining, setWrongSymbol, increaseMistakes, changeCurrentSymbol, setMessage } from '../../store/action';
+import { fetchTrainingText } from '../../store/api-actions';
 import { checkSymbol } from '../../utils';
 import { AppRoutes, MessageTexts } from '../../constants';
 
@@ -41,6 +42,8 @@ function MainScreen() {
       dispatch(increaseMistakes());
     }
   };
+
+  useEffect(() =>   dispatch(fetchTrainingText()), []);
 
   useEffect(() => {
     dispatch(setMessage(`${!trainingStatus ? MessageTexts.START : ''}`));

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 
 import { ResultType } from '../../constants';
+import { getTypeSpeed } from '../../utils';
 import Result from '../result/result';
 import { getMistakesCount, getStartTime, getCurrentSymbol, getTrainingStatus } from '../../store/selectors';
 
@@ -23,7 +24,7 @@ function CurrentSpeedResult (props) {
     mistakes: 0,
   };
 
-  const [result, setResult] = useState(initialResult);
+  const [result, setResult] = useState(getTypeSpeed(initialResult));
   const [timePassed, setTimePassed] = useState(0);
 
   useEffect(() => {
@@ -38,18 +39,18 @@ function CurrentSpeedResult (props) {
     }
 
     return (() => {
-      setResult(initialResult);
+      setResult(getTypeSpeed(initialResult));
       clearInterval(updateInterval);
     });
   }, [isStarted]);
 
   useEffect(() => {
-    setResult({
+    setResult(getTypeSpeed({
       start: startTime,
       end: new Date(),
       rightSymbols: rightSymbolsCount,
       mistakes: mistakesCount,
-    });
+    }));
   }, [timePassed, isStarted]);
 
   return (

@@ -1,33 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import styles from './result-screen.module.scss';
 import PageHeader from '../page-header/page-header';
 import Result from '../result/result';
 import { ResultType } from '../../constants';
-import { getMistakesCount, getStartTime, getCurrentSymbol } from '../../store/selectors';
+import { getTypeSpeed, getTypePrecision } from '../../utils';
+import { getMistakesCount, getStartTime, getCurrentSymbol, getUserInfo } from '../../store/selectors';
 import { AppRoutes } from '../../constants';
+import { saveResults } from '../../store/api-actions';
 
 function ResultScreen() {
   const startTime = useSelector(getStartTime);
   const rightSymbolsCount = useSelector(getCurrentSymbol);
   const mistakesCount = useSelector(getMistakesCount);
+  const user = useSelector(getUserInfo);
+  const dispatch = useDispatch();
 
-  const speedResult = {
+  const resultsData = {
     start: startTime,
     end: new Date(),
     rightSymbols: rightSymbolsCount,
     mistakes: mistakesCount,
   };
 
-  const precisionResult = {
-    rightSymbols: rightSymbolsCount,
-    mistakes: mistakesCount,
+  const results = {
+    speed: getTypeSpeed(resultsData),
+    precision: getTypePrecision(resultsData),
   };
 
-  if (speedResult.rightSymbols < 1) {
+  useEffect(() => user.name && dispatch(saveResults(results, user)), []);
+
+  if (resultsData.rightSymbols < 1) {
     return <Redirect to={AppRoutes.ROOT} />;
   }
 
@@ -44,14 +50,14 @@ function ResultScreen() {
               Скорость печати:&nbsp;
               <Result
                 resultType={ResultType.SPEED}
-                result={speedResult}
+                result={results.speed}
               />
             </div>
             <div className={classNames('col-10', styles.result)}>
               Точность печати:&nbsp;
               <Result
                 resultType={ResultType.PRECISION}
-                result={precisionResult}
+                result={results.precision}
               />
             </div>
           </div>

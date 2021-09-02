@@ -20,12 +20,13 @@ export const fetchTrainingText = () => (dispatch, _getState, api) => (
 export const fetchResults = (user) => (dispatch, _getState, api) => (
   api.get(`${BASE_URLS.RESULTS}/${user.name}${user.id}`)
     .then(({ data }) => dispatch(loadResults(data.userResults)))
-    // .then(() => dispatch(setIsLoading(false)))
+    .then(() => dispatch(setIsLoading(false)))
     .catch((error) => {
-      // dispatch(setIsLoading(false));
+      dispatch(setIsLoading(false));
       toast(error.message);
     })
 );
+
 
 export const checkAuth = (isInitial) => (dispatch, _getState, api) => (
   api.get(`${BASE_URLS.AUTHORIZATION}/${APIRoute.LOGIN}`)
@@ -53,3 +54,49 @@ export const systemLogout = () => (dispatch, _getState, api) => (
     .then(() => dispatch(logout()))
     .catch((error) => toast(error.message))
 );
+
+
+export const getUpdatedResults = (speed, precision, user, api) => (
+  new Promise((resolve) => {
+    api.get(BASE_URLS.RESULTS)
+      .then(({ data }) => {
+        let newRes = null;
+        let isNewUser = true;
+        const index = data.findIndex((res) => res.id === `${user.name}${user.id}`);
+
+        if (index > -1) {
+          isNewUser = false;
+          newRes = data[index];
+          newRes.userResults.push({speed, precision});
+        } else {
+          newRes = {
+            id: `${user.name}${user.id}`,
+            userResults: [
+              {
+                speed: speed,
+                precision: precision,
+              },
+            ],
+          };
+        }
+        resolve([newRes, isNewUser]);
+      })
+      .catch((error) => {
+        toast(error.message);
+      });
+  })
+);
+
+export const saveResults = ({speed, precision}, user) => (dispatch, _getState, api) => {
+  getUpdatedResults(speed, precision, user, api)
+    .then(([results, isNewUser]) => {
+      if (isNewUser) {
+        api.post(BASE_URLS.RESULTS, results);
+      } else {
+        api.put(`${BASE_URLS.RESULTS}/${user.name}${user.id}`, results);
+      }
+    })
+    .catch((error) => {
+      toast(error.message);
+    });
+};

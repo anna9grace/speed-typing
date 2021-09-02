@@ -14,7 +14,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   authInfo: {},
   results: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -54,6 +54,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.authorizationStatus = AuthorizationStatus.NO_AUTH;
       state.authInfo = {};
+      state.results = [];
     })
     .addCase(setIsLoading, (state, action) => {
       state.isLoading = action.payload;

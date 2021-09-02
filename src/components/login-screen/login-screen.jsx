@@ -54,6 +54,7 @@ function LoginScreen () {
 
   const onSubmit = (authData) => {
     dispatch(login(authData));
+    return <Redirect to={AppRoutes.ROOT} />;
   };
 
   const handleSubmit = (evt) => {
