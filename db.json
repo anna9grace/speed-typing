@@ -10,6 +10,18 @@
         {
           "speed": "165",
           "precision": "89"
+        },
+        {
+          "speed": 317,
+          "precision": 100
+        },
+        {
+          "speed": 279,
+          "precision": 96
+        },
+        {
+          "speed": 78,
+          "precision": 77
         }
       ]
     },
