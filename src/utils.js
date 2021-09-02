@@ -1,4 +1,5 @@
 import { Symbols } from './constants';
+import { AuthorizationStatus } from './constants';
 
 const MILLISECONDS_IN_MINUTE = 60000;
 const PERCENTS = 100;
@@ -21,3 +22,5 @@ export const getTypePrecision = (resultData) => {
   const symbolsCount = resultData.rightSymbols + resultData.mistakes;
   return Math.round((resultData.rightSymbols / symbolsCount) * PERCENTS);
 };
+
+export const isCheckedAuth = (authorizationStatus) => authorizationStatus !== AuthorizationStatus.UNKNOWN;

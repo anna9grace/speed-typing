@@ -41,8 +41,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.currentSymbolNumber = state.currentSymbolNumber + action.payload;
     })
     .addCase(loadText, (state, action) => {
-      // state.trainingText = action.payload.slice(0, 1).join(' ');
-      state.trainingText = 'Start typing when ready';
+      state.trainingText = action.payload.slice(0, 1).join(' ');
     })
     .addCase(setMessage, (state, action) => {
       state.messageText = action.payload;

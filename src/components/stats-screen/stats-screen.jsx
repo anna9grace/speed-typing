@@ -7,25 +7,24 @@ import styles from './stats-screen.module.scss';
 
 import PageHeader from '../page-header/page-header';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { getResults, getUserInfo, getLoadingStatus } from '../../store/selectors';
+import { getResults, getUserInfo, getLoadingStatus, getAuthStatus } from '../../store/selectors';
 import { fetchResults } from '../../store/api-actions';
+import { AppRoutes, AuthorizationStatus } from '../../constants';
 
 function StatsScreen () {
   const results = useSelector(getResults);
   const user = useSelector(getUserInfo);
   const loadingStatus = useSelector(getLoadingStatus);
   const dispatch = useDispatch();
+  const authStatus = useSelector(getAuthStatus);
 
   useEffect(() => {
     user.id && dispatch(fetchResults(user));
   }, [user]);
 
-  console.log(user);
-  console.log(loadingStatus);
-  // console.log(!user.id && !loadingStatus);
 
-  if (!user.id && !loadingStatus) {
-    return <Redirect to={'/'} />;
+  if (authStatus === AuthorizationStatus.NO_AUTH) {
+    return <Redirect to={AppRoutes.ROOT} />;
   }
 
   const renderMainContent = () => (

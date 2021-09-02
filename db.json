@@ -4,14 +4,6 @@
       "id": "a1",
       "userResults": [
         {
-          "speed": "165",
-          "precision": "89"
-        },
-        {
-          "speed": "165",
-          "precision": "89"
-        },
-        {
           "speed": 317,
           "precision": 100
         },
@@ -29,8 +21,8 @@
       "id": "b1",
       "userResults": [
         {
-          "speed": "100",
-          "precision": "99"
+          "speed": 100,
+          "precision": 99
         }
       ]
     }
