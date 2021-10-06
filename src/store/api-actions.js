@@ -23,10 +23,13 @@ export const fetchResults = (user) => (dispatch, _getState, api) => (
     .then(() => dispatch(setIsLoading(false)))
     .catch((error) => {
       dispatch(setIsLoading(false));
+      if (!error.response) {
+        toast('Вы не подключены к серверу');
+        return;
+      }
       toast(error.message);
     })
 );
-
 
 export const checkAuth = (isInitial) => (dispatch, _getState, api) => (
   api.get(`${BASE_URLS.AUTHORIZATION}/${APIRoute.LOGIN}`)
