@@ -16,11 +16,12 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-toastify": "^8.0.1",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "json-server": "0.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && json-server --watch db.json --port 3004",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "eslint": "eslint --ext .jsx --ext .js src/",
