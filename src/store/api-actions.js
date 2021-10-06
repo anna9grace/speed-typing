@@ -3,7 +3,7 @@ import { loadText } from './action';
 
 import { BASE_URLS } from '../constants';
 import { APIRoute } from '../constants';
-import { AuthorizationStatus } from '../constants';
+import { AuthorizationStatus, ResponseCode } from '../constants';
 import { requireAuthorization, logout, setIsLoading, loadResults } from './action';
 
 
@@ -23,7 +23,7 @@ export const fetchResults = (user) => (dispatch, _getState, api) => (
     .then(() => dispatch(setIsLoading(false)))
     .catch((error) => {
       dispatch(setIsLoading(false));
-      if (!error.response) {
+      if (!error.response || error.response.status === ResponseCode.NOT_FOUND) {
         toast('Вы не подключены к серверу');
         return;
       }
@@ -85,6 +85,10 @@ export const getUpdatedResults = (speed, precision, user, api) => (
         resolve([newRes, isNewUser]);
       })
       .catch((error) => {
+        if (error.response.status === ResponseCode.NOT_FOUND) {
+          toast('Вы не подключены к серверу');
+          return;
+        }
         toast(error.message);
       });
   })
@@ -100,6 +104,10 @@ export const saveResults = ({speed, precision}, user) => (dispatch, _getState, a
       }
     })
     .catch((error) => {
+      if (error.response.status === ResponseCode.NOT_FOUND) {
+        toast('Вы не подключены к серверу');
+        return;
+      }
       toast(error.message);
     });
 };

@@ -35,3 +35,7 @@ export const AuthorizationStatus = {
 export const MessageTexts = {
   START: 'Начните печатать, когда будете готовы!',
 };
+
+export const ResponseCode = {
+  NOT_FOUND: 404,
+};
